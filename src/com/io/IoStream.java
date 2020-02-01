@@ -4,7 +4,7 @@ import java.io.*;
 
 /**
  * 输入/输出字节流
- * @author CDY
+ * @author YUDI
  */
 public class IoStream {
 

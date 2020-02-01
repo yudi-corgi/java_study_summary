@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * 输入/输出字符流
- * @author CDY
+ * @author YUDI
  */
 public class RwCharStream {
 
