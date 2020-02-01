@@ -27,22 +27,17 @@ public class NioClientHandler implements Runnable {
                 if(readyChannel == 0){
                     continue;
                 }
-                //获取 就绪的 通道集合
+                //获取就绪的通道集合
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
                 Iterator iterator = selectionKeys.iterator();
                 while(iterator.hasNext()){
                     //获取 channel 实例
                     SelectionKey selectionKey = (SelectionKey) iterator.next();
-                    //移除Set中的当前SelectionKey，是因为每检测到事件就把selectionkey放到集合，所以取出来后就将其从set中删除
                     iterator.remove();
-                    //7. 根据就绪状态，调用方法处理业务逻辑
-                    /**
-                     * 如果是读事件
-                     */
+                    //读事件
                     if(selectionKey.isReadable()){
                         readHandler(selectionKey,selector);
                     }
-                    //我自己开心就好不是吗 哈哈sadasdasdas
                 }
             }
         }catch (IOException e){
@@ -64,7 +59,6 @@ public class NioClientHandler implements Runnable {
             byteBuffer.flip();
             //读取数据
             response += Charset.forName("UTF-8").decode(byteBuffer);
-
             //将channel再次注册到selector上，并监听事件（非必须操作，当监听事件没有改变时不需要写）
             socketChannel.register(selector,SelectionKey.OP_READ);
         }

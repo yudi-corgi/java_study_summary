@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
+ * 模拟多人通信聊天场景
  * NIO 服务端
  */
 public class NioServer {
@@ -20,7 +21,7 @@ public class NioServer {
         //2. 创建 channel 通道
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         //3. 绑定端口
-        serverSocketChannel.socket().bind(new InetSocketAddress(8000));
+        serverSocketChannel.socket().bind(new InetSocketAddress(8880));
         //4. 设置 channel 为非阻塞模式
         serverSocketChannel.configureBlocking(false);
         //5. 将通道注册到 selector 上，并监听连接事件
@@ -34,24 +35,20 @@ public class NioServer {
             if(readyChannel == 0){
                 continue;
             }
-
             //获取已连接并且就绪的通道集合
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
-
             Iterator iterator = selectionKeys.iterator();
-
             while(iterator.hasNext()){
                 //获取 channel 实例
                 SelectionKey selectionKey = (SelectionKey) iterator.next();
                 //移除Set中的当前SelectionKey，是因为每检测到事件就把selectionkey放到集合，所以取出来后就将其从set中删除
                 iterator.remove();
-
                 //7. 根据就绪状态，调用方法处理业务逻辑
                 /**
                  * 如果是接入事件
                  */
                 if(selectionKey.isAcceptable()){
-                    acceptHandler(serverSocketChannel,selector);
+                    acceptHandler(selectionKey,serverSocketChannel,selector);
                 }
                 /**
                  * 如果是读事件
@@ -61,11 +58,10 @@ public class NioServer {
                 }
             }
         }
-
     }
 
     //接入事件处理
-    private void acceptHandler(ServerSocketChannel serverSocketChannel,Selector selector) throws IOException {
+    private void acceptHandler(SelectionKey selectionKey,ServerSocketChannel serverSocketChannel,Selector selector) throws IOException {
         //通过服务端通道创建通道与客户端进行通信
         SocketChannel socketChannel = serverSocketChannel.accept();
         //设置非阻塞模式
@@ -100,7 +96,7 @@ public class NioServer {
         }
     }
 
-    //将客户端A的消息广播给其他客户端
+    //将当前客户端的消息广播给其他客户端
     private void broadCast(Selector selector,SocketChannel sourceChannel,String request){
         //获取所有已接入的通道，kes 是获取所有通道（包括已连接但没有就绪事件的通道）
         Set<SelectionKey> selectionKeys = selector.keys();
