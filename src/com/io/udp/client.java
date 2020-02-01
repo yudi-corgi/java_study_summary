@@ -13,7 +13,7 @@ public class client {
         //1. 创建客户段发送的数据报
         InetAddress address = InetAddress.getByName("localhost");
         byte[] data = "我想学习UDP网络通信基础知识！".getBytes();
-        DatagramPacket packet = new DatagramPacket(data,0,address,8800);
+        DatagramPacket packet = new DatagramPacket(data,data.length,address,8800);
         //2. 客户端发送信息
         DatagramSocket socket = new DatagramSocket();
         socket.send(packet);

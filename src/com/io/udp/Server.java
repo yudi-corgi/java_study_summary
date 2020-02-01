@@ -28,7 +28,7 @@ public class Server {
         InetAddress address = packet.getAddress();
         int port = packet.getPort();
         byte[] resData = "请观看代码，仔细体会和理解！".getBytes();
-        DatagramPacket resPacket = new DatagramPacket(resData,0,address,port);
+        DatagramPacket resPacket = new DatagramPacket(resData,resData.length,address,port);
         server.send(resPacket);
         server.close();
 
