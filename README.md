@@ -6,6 +6,11 @@ JAVA知识代码汇总
 * **BIO** 配合多线程的简单实现方式
 * **NIO** 的实现，以多人网络通信聊天为例子实现
 
+# 集合
+* ArrayList、LinkedList 基础使用
+* HashSet 基础使用
+* HashMap、Hashtable 基础使用
+
 # Java8 lambda 表达式部分基础使用
 * 常用函数式接口
 * 方法引用
