@@ -70,13 +70,15 @@ public class ListPractice {
             System.out.println("List 集合不包含元素：哦尼纳！");
         }
 
-        //2. 声明一个 LinkeList
+        //2. 声明一个 LinkedList
         List<String> linkedList = new LinkedList<>();
-        linkedList.add("这是一个双向链表集合");
+        linkedList.add("这是一个双向链表集合！");
+        linkedList.add("包含前节点信息、数据元素、后节点信息！");
+        linkedList.add("操作方式与 ArrayList 相似");
         System.out.println("linkedList 第一个元素："+linkedList.get(0));
 
 
-        //3. 声明一个 queue
+        //3. 声明一个 String 类型的 Queue 队列
         Queue<String> queue = new LinkedList<>();
         queue.add("aa");
         queue.add("bb");

@@ -61,6 +61,7 @@ public class MapPractice {
         table.put("1","不允许存在 null 的 Key");
         table.put("2","线程安全");
         table.put("3","继承自 Dictionary 类，实现了 Map 接口");
+        table.put("4","其它与 HashMap 相似");
         System.out.println("Hashtable 是否包含 Key 值为 1 的元素：" + table.containsKey("1"));
 
     }
