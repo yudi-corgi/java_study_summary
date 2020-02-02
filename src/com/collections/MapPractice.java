@@ -1,9 +1,7 @@
 package com.collections;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author YUDI
@@ -13,7 +11,7 @@ public class MapPractice {
 
     public static void main(String[] args) {
 
-        // 声明 K 为 String，V 为 Object 的 Map 集合
+        //1. 声明 K 为 String，V 为 Object 的 Map 集合
         Map<String,Object> map = new HashMap<>();
 
         //新增元素
@@ -57,5 +55,13 @@ public class MapPractice {
         }else{
             System.out.println("map 集合包含值为：字符串元素 的 Value");
         }
+
+        //2. 声明 K 为 String，V 为 Object 的 Hashtable 集合
+        Hashtable<String,Object> table = new Hashtable<>();
+        table.put("1","不允许存在 null 的 Key");
+        table.put("2","线程安全");
+        table.put("3","继承自 Dictionary 类，实现了 Map 接口");
+        System.out.println("Hashtable 是否包含 Key 值为 1 的元素：" + table.containsKey("1"));
+
     }
 }
