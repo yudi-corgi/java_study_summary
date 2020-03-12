@@ -11,7 +11,12 @@ JAVA知识代码汇总
 * HashSet 基础使用
 * HashMap、Hashtable 基础使用
 
+# Java 代理模式
+* 静态代理：继承方式、聚合方式
+* 动态代理：jdk、cglib
+
 # Java8 lambda 表达式部分基础使用
 * 常用函数式接口
 * 方法引用
+
 
