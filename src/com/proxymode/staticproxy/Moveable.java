@@ -5,4 +5,7 @@ package com.proxymode.staticproxy;
  * @date 2020/3/12 17:53
  */
 public interface Moveable {
+
+    void move();
+
 }
