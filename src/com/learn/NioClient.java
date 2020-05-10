@@ -7,6 +7,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class NioClient {
@@ -16,10 +17,6 @@ public class NioClient {
         //连接服务端
         SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1",8880));
 
-        /**
-         * 此处可以自己试一下接收响应数据和发送数据步骤调换一下会有什么情况，又是什么原因引发的，思考ing
-         */
-
         //接收服务端响应数据
         Selector selector = Selector.open();
         socketChannel.configureBlocking(false);
@@ -28,10 +25,10 @@ public class NioClient {
 
         //向服务端发送数据
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()){
-            String request = scanner.nextLine();
+        while (scanner.hasNext()){
+            String request = scanner.next();
             if(request != null && request.length() >0){
-                socketChannel.write(Charset.forName("UTF-8").encode(request));
+                socketChannel.write(StandardCharsets.UTF_8.encode(request));
             }
             System.out.println("客户端输入内容:"+scanner.nextLine());
         }
