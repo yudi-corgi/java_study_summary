@@ -3,6 +3,7 @@ package com.binarytree.huffmantree;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * @author YUDI
@@ -55,13 +56,28 @@ public class HuffmanTree  {
     }
 
     //前序遍历：即每个结点遍历第一次就输出
-    public void preorderTraversal(Node root){
+    public void preOrderTraversal(Node root){
         if(root != null){
             System.out.print(root.weight + " ");
-            preorderTraversal(root.left);
-            preorderTraversal(root.right);
+            preOrderTraversal(root.left);
+            preOrderTraversal(root.right);
         }
+    }
 
+    //前序遍历（非递归）
+    public void preOrderTraversal2(Node root){
+        Stack<Node> stack = new Stack<>();
+        Node pNode = root;
+        while(pNode != null || !stack.isEmpty()){
+            if(pNode != null){
+                System.out.print(pNode.weight + " ");
+                stack.push(pNode);
+                pNode = pNode.left;
+            }else {
+                Node node = stack.pop();
+                pNode = node.right;
+            }
+        }
     }
 
     //中序遍历：即每个结点遍历第二次就输出
@@ -73,6 +89,22 @@ public class HuffmanTree  {
         }
     }
 
+    //中序遍历（非递归）
+    public void inOrderTraversal2(Node root){
+        Stack<Node> stack = new Stack<>();
+        Node pNode = root;
+        while(pNode != null || !stack.isEmpty()){
+            if(pNode != null){
+                stack.push(pNode);
+                pNode = pNode.left;
+            }else {
+                Node node = stack.pop();
+                System.out.print(node.weight + " ");
+                pNode = node.right;
+            }
+        }
+    }
+
     //后序遍历：即每个结点遍历第三次就输出
     public void postOrderTraversal(Node root){
         if(root != null){
@@ -81,6 +113,12 @@ public class HuffmanTree  {
             System.out.print(root.weight + " ");
         }
     }
+
+    //后序遍历（非递归）
+    public void postOrderTraversal2(Node root){
+        System.out.println();
+    }
+
     //层次遍历：即按层次遍历结点输出
     public void levelTraversal(Node root){
         LinkedList<Node> queue = new LinkedList<>();
@@ -103,15 +141,25 @@ public class HuffmanTree  {
         HuffmanTree huffmanTree = new HuffmanTree();
         huffmanTree.createHuffman(weights);
         System.out.print("前序遍历:");
-        huffmanTree.preorderTraversal(huffmanTree.root);
+        huffmanTree.preOrderTraversal(huffmanTree.root);
+        System.out.println();
+        System.out.print("前序遍历（非递归）:");
+        huffmanTree.preOrderTraversal2(huffmanTree.root);
         System.out.println();
         System.out.print("中序遍历:");
         huffmanTree.inOrderTraversal(huffmanTree.root);
         System.out.println();
+        System.out.print("中序遍历（非递归）:");
+        huffmanTree.inOrderTraversal2(huffmanTree.root);
+        System.out.println();
         System.out.print("后序遍历:");
         huffmanTree.postOrderTraversal(huffmanTree.root);
         System.out.println();
+        System.out.print("后序遍历（非递归）:");
+        huffmanTree.postOrderTraversal2(huffmanTree.root);
+        System.out.println();
         System.out.print("层次遍历:");
         huffmanTree.levelTraversal(huffmanTree.root);
+
     }
 }
