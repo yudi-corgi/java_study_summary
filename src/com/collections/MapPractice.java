@@ -64,5 +64,6 @@ public class MapPractice {
         table.put("4","其它与 HashMap 相似");
         System.out.println("Hashtable 是否包含 Key 值为 1 的元素：" + table.containsKey("1"));
 
+        Map<String,Object> mconMap = new ConcurrentHashMap<>();
     }
 }
