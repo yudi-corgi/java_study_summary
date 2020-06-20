@@ -1,5 +1,7 @@
 package com.thread;
 
+import com.sun.jmx.snmp.tasks.ThreadService;
+
 import java.util.concurrent.*;
 
 /**
@@ -10,6 +12,11 @@ import java.util.concurrent.*;
 public class ThreadPoolPractice {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
+
+        ExecutorService es = Executors.newFixedThreadPool(5);
+        CallableImpl c = new CallableImpl();
+        Future<String> f = es.submit(c);
+        System.out.println(f.get() + "<<");
 
         //构建线程池
         // 1. 创建数组阻塞队列

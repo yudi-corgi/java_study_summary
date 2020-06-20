@@ -8,6 +8,9 @@ import java.util.*;
  */
 public class ListPractice {
 
+    public static void ads(MapPractice mapPractice){}
+
+
     public static void main(String[] args) {
         //1. 声明 String 类型的 List 集合
         List<String> list = new ArrayList<>();
