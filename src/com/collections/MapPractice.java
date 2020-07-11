@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class MapPractice {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         //1. 声明 K 为 String，V 为 Object 的 Map 集合
         Map<String,Object> map = new HashMap<>();
@@ -65,5 +65,37 @@ public class MapPractice {
         System.out.println("Hashtable 是否包含 Key 值为 1 的元素：" + table.containsKey("1"));
 
         Map<String,Object> mconMap = new ConcurrentHashMap<>();
+
+        myHashMap();
+        weakHashMap();
+
     }
+
+    public static void myHashMap(){
+        HashMap<String,String> map = new HashMap<>();
+        String key = new String("k1");
+        String value = "v1";
+        map.put(key,value);
+        System.out.println(map);
+
+        key = null;
+        System.gc();
+        System.out.println(map);
+    }
+
+    public static void weakHashMap() throws InterruptedException {
+        WeakHashMap<String,String> map = new WeakHashMap<>();
+        String key = new String("weak");
+        // String k = "k2";
+        String value = "weakVal";
+        map.put(key,value);
+        System.out.println(map);
+
+        key = null;
+        System.gc();
+        Thread.sleep(1000);
+        System.out.println(map);
+    }
+
+
 }
