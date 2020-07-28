@@ -28,10 +28,10 @@ public class CopyFile {
         end = System.currentTimeMillis();
         System.out.println("FileChannel时间长度："+(end-start));
         // BufferReader/BufferWriter
-        start = System.currentTimeMillis();
+        /*start = System.currentTimeMillis();
         CopyFile.copy(source,dest);
         end = System.currentTimeMillis();
-        System.out.println("时间长度："+(end-start));
+        System.out.println("时间长度："+(end-start));*/
     }
 
     /**
@@ -46,7 +46,7 @@ public class CopyFile {
         FileOutputStream fos = new FileOutputStream(new File(dest));
         FileChannel input = fis.getChannel();
         FileChannel output = fos.getChannel();
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4096);
         String str = null;
         while(input.read(byteBuffer) != -1){
             byteBuffer.flip();
@@ -58,7 +58,7 @@ public class CopyFile {
             output.write(byteBuffer);
             byteBuffer.clear();
         }
-        output.transferFrom(input,0,input.size());
+        // output.transferFrom(input,0,input.size());
     }
 
     /**
