@@ -1,7 +1,7 @@
-package com.designpatterns.adaptermode;
+package com.designpatterns.adaptermode.impl;
 
 import com.designpatterns.adaptermode.adapter.ObjectMediaAdapter;
-import com.designpatterns.adaptermode.impl.MediaPlay;
+import com.designpatterns.adaptermode.MediaPlay;
 
 /**
  * Target 目标实现类，用户调用

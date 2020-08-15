@@ -1,7 +1,7 @@
 package com.designpatterns.adaptermode.adapter;
 
-import com.designpatterns.adaptermode.VlcPlayer;
-import com.designpatterns.adaptermode.impl.MediaPlay;
+import com.designpatterns.adaptermode.impl.VlcPlayer;
+import com.designpatterns.adaptermode.MediaPlay;
 
 /**
  * 类适配器
