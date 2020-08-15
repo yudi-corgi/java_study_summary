@@ -4,7 +4,7 @@ import com.designpatterns.adaptermode.impl.ClassAudioPlayer;
 import com.designpatterns.adaptermode.impl.ObjectAudioPlayer;
 
 /**
- * 适配器测试
+ * 适配器模式测试
  * @author YUDI
  * @date 2020/8/15 16:14
  */

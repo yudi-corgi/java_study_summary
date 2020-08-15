@@ -6,7 +6,7 @@ import com.designpatterns.strategymode.impl.StrategyAdd;
 import com.designpatterns.strategymode.impl.StrategySubtract;
 
 /**
- * 策略测试
+ * 策略模式测试
  * @author YUDI
  * @date 2020/8/15 17:37
  */
