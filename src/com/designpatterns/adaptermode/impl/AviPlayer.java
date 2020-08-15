@@ -1,6 +1,6 @@
-package com.designpatterns.adaptermode;
+package com.designpatterns.adaptermode.impl;
 
-import com.designpatterns.adaptermode.impl.AdvanceMediaPlay;
+import com.designpatterns.adaptermode.AdvanceMediaPlay;
 
 /**
  * Adaptee，被适配者接口实现类

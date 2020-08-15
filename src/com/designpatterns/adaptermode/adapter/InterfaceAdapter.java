@@ -1,6 +1,6 @@
 package com.designpatterns.adaptermode.adapter;
 
-import com.designpatterns.adaptermode.impl.SuperBigInterface;
+import com.designpatterns.adaptermode.SuperBigInterface;
 
 /**
  * 接口适配器，为接口提供一个缺省实现

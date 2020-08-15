@@ -1,11 +1,9 @@
 package com.designpatterns.adaptermode.adapter;
 
-import com.designpatterns.adaptermode.AviPlayer;
-import com.designpatterns.adaptermode.VlcPlayer;
-import com.designpatterns.adaptermode.impl.AdvanceMediaPlay;
-import com.designpatterns.adaptermode.impl.MediaPlay;
-
-import javax.print.attribute.standard.Media;
+import com.designpatterns.adaptermode.impl.AviPlayer;
+import com.designpatterns.adaptermode.impl.VlcPlayer;
+import com.designpatterns.adaptermode.AdvanceMediaPlay;
+import com.designpatterns.adaptermode.MediaPlay;
 
 /**
  * 对象适配器

@@ -1,4 +1,4 @@
-package com.designpatterns.adaptermode.impl;
+package com.designpatterns.adaptermode;
 
 /**
  * @author YUDI

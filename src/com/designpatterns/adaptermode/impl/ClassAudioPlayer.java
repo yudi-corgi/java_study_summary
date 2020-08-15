@@ -1,7 +1,7 @@
-package com.designpatterns.adaptermode;
+package com.designpatterns.adaptermode.impl;
 
 import com.designpatterns.adaptermode.adapter.ClassMediaAdapter;
-import com.designpatterns.adaptermode.impl.MediaPlay;
+import com.designpatterns.adaptermode.MediaPlay;
 
 /**
  * @author YUDI

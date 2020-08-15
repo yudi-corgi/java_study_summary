@@ -1,4 +1,4 @@
-package com.designpatterns.adaptermode.impl;
+package com.designpatterns.adaptermode;
 
 /**
  * 含有大量方法的接口类

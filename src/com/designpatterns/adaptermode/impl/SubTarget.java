@@ -1,4 +1,4 @@
-package com.designpatterns.adaptermode;
+package com.designpatterns.adaptermode.impl;
 
 import com.designpatterns.adaptermode.adapter.InterfaceAdapter;
 
@@ -7,7 +7,7 @@ import com.designpatterns.adaptermode.adapter.InterfaceAdapter;
  * @author YUDI
  * @date 2020/8/15 16:11
  */
-public class SubInterfaceAdapter extends InterfaceAdapter {
+public class SubTarget extends InterfaceAdapter {
 
     @Override
     public void two() {
