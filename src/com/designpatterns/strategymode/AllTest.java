@@ -14,13 +14,13 @@ public class AllTest {
 
     public static void main(String[] args) {
 
-        System.out.println("简单策略模式功能：");
+        System.out.println("简单使用：一般是用户传递条件，在环境类进行条件判断，但该方式没有触发这种情况.");
         StrategyContext sc1 = new StrategyContext(new StrategyAdd());
         System.out.println("数值相加:" + sc1.executeStrategy(2, 3));
         StrategyContext sc2 = new StrategyContext(new StrategySubtract());
         System.out.println("数值相减:" + sc2.executeStrategy(3, 2));
 
-        System.out.println("解决 if...else 过多情况：");
+        System.out.println("解决 if...else 过多情况：将条件的判断交由环境类.");
         StatusCodeStrategy scs = StatusCodeContext.getInstance(200);
         scs.process("请求处理成功!");
         scs = StatusCodeContext.getInstance(302);
