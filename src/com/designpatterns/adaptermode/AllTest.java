@@ -14,6 +14,7 @@ public class AllTest {
         System.out.println("类适配器：");
         ClassAudioPlayer cap = new ClassAudioPlayer();
         cap.play("vlc");
+
         System.out.println("对象适配器：");
         ObjectAudioPlayer oap = new ObjectAudioPlayer();
         oap.play("avi");
