@@ -1,7 +1,10 @@
 package com.jdk8learn.streamLearn;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -34,5 +37,13 @@ public class PracticeLambda2 {
         // 根据传入数值n，将前 N 个数分为质数和非质数(包含 n)
         Map<Boolean, List<Integer>> primeMap = PracticeLambda2.partitionPrimes(100);
         System.out.println(primeMap);
+
+        //调用 Collector 收集器接口实现类
+        List<String> list = Arrays.asList("abc","asd","qwe","vbn","fgh","rty");
+        List<String> upperList1 = list.stream().map(String::toUpperCase).collect(new CustomerToListCollector<>());
+        System.out.println(upperList1);
+        //直接自定义收集器
+        List<String> upperList2 = list.stream().map(String::toUpperCase).collect(ArrayList::new,List::add, List::addAll);
+        System.out.println(upperList2);
     }
 }
