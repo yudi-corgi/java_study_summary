@@ -42,8 +42,10 @@ JAVA知识代码汇总
 ### 模板模式
 * 模拟游戏运行，构建相同的运行抽象模板（方法），由具体模板根据需要重写部分功能（方法）
 
-# Java8 lambda 表达式部分基础使用
+# Java8 lambda 表达式/Stream API 基础使用
 * 常用函数式接口
 * 方法引用
+* Stream API：filter(筛选)、map(映射)、reduce(归约)
+* 自定义收集器 Collector
 
 
