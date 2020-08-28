@@ -54,6 +54,7 @@ public class NodePractice {
 
 
     public static void main(String[] args) {
+        System.out.println("===============================链表翻转=============================");
         String[] arr = {"abc", "123", "呵呵", "测试"};
         Node n = NodePractice.createNode(arr);
         System.out.println("链表输出："+n);
@@ -61,5 +62,22 @@ public class NodePractice {
         System.out.println("迭代方式："+n1);
         Node n2 = reverseNodeByRecursion(n1);
         System.out.println("递归方式："+n2);
+        System.out.println("===============================跳表测试=============================");
+        SkipList list=new SkipList();
+        list.insert(50);
+        list.insert(15);
+        list.insert(13);
+        list.insert(20);
+        list.insert(100);
+        list.insert(75);
+        list.insert(99);
+        list.insert(76);
+        list.insert(83);
+        list.insert(65);
+        list.printList();
+        list.search(50);
+        list.search(22);
+        System.out.println(list.remove(50)?"节点：50 删除成功":"节点：50 删除失败");
+        list.search(50);
     }
 }
