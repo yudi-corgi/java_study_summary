@@ -92,13 +92,4 @@ public class PrimeNumbersCollector implements Collector<Integer,
         return Collections.unmodifiableSet(EnumSet.of(Characteristics.IDENTITY_FINISH));
     }
 
-
-
-    /*
-     *  以下为通过 partitioningBy() 分区方式获取质数与非质数
-     */
-
-
-
-
 }
