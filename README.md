@@ -1,15 +1,24 @@
-# java_study_summary
-JAVA知识代码汇总
+# Meaning
+随着知识不断的汲取，本人写了很多的代码实现例子，想要好好整理一番，方便回顾，所以这是一个总结向的代码仓库。  
+本人会把个人学习的知识、实际项目遇到的难题、有趣的代码例子存于此，包括但不限于以下几种：
+- 原生 API
+- 工具操作类
+- 设计模式
+- 数据结构
+- Java 版本相关特性
+- ...  
 
-# 工具类
+该仓库不涉及 Java 框架相关部分，需要的朋友可以移步这里哦 => [Java 框架及工具汇总](https://github.com/yudi-corgi/java_framework_summary):smile: 
+
+# Tools
 * Timer 定时任务调度
 
-# I/O流
+# I/O
 * 常用字节流与字符流API的基础使用方式，同时并有简单的拷贝文件例子实现
 * **BIO** 配合多线程的简单实现方式
 * **NIO** 的实现，以多人网络通信聊天为例子实现
 
-# 数据结构
+# Data Structure
 ### 集合
 * ArrayList、LinkedList 基础使用
 * HashSet 基础使用
@@ -20,7 +29,7 @@ JAVA知识代码汇总
 ### 树
 * 哈夫曼树构建实例
 
-# Java 设计模式
+# Design Patterns
 ### 代理模式（结构）
 * 静态代理：继承方式、聚合方式
 * 动态代理：jdk、cglib
@@ -48,8 +57,11 @@ JAVA知识代码汇总
 * 根据日志信息级别调用对应的日志处理对象
 ### 装饰器模式（结构）
 * 简单装饰图形接口，并增加涂色功能的例子（该模式可直接参考 Java IO 相关类）
+### 访问者模式（行为）
+* 根据不同访问者（Boss、CFO、CPA）调用不同的账单（Consume、Income）逻辑
+- 通过抽象（AbstractVisitor）继承、接口（Visitor）实现模拟不同层次的访问者，体现该模式跨层次的访问或针对特定层次的逻辑进行定义的优点
 
-# Java8 lambda 表达式/Stream API 基础使用
+# Java8 lambda / Stream API
 * 常用函数式接口
 * 方法引用
 * Stream API：filter(筛选)、map(映射)、reduce(归约)
