@@ -1,4 +1,4 @@
-package com.collections;
+package com.datastruct.linkedlist;
 
 /**
  * 链表相关操作测试类

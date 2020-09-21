@@ -1,4 +1,4 @@
-package com.collections;
+package com.datastruct.linkedlist;
 
 import java.util.Random;
 
