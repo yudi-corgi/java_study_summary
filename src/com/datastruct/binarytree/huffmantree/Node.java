@@ -1,4 +1,4 @@
-package com.binarytree.huffmantree;
+package com.datastruct.binarytree.huffmantree;
 
 /**
  * @author YUDI

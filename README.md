@@ -1,4 +1,4 @@
-# Meaning
+## Meaning
 随着知识不断的汲取，写了很多的代码实现例子，也看到很多有趣的功能实现例子。  
 因此想要好好整理一番，方便回顾与学习，所以这是一个总结向的代码仓库。  
 本人会把个人学习的知识、实际项目遇到的难题、有趣的代码例子存于此，包括但不限于以下几种：
@@ -11,15 +11,30 @@
 
 该仓库不涉及 Java 框架相关部分，需要的朋友可以移步这里哦 => [Java 框架及工具汇总](https://github.com/yudi-corgi/java_framework_summary):smile: 
 
-# Tools
+## Directory Struct
+```lua
+├── jar -- 代码所需的依赖包
+└── src/com -- 源码目录
+    ├── datastruct      -- 数据结构，如数组、集合、链表
+    ├── designpatterns  -- 设计模式
+    ├── file            -- 文件操作
+    ├── io              -- I/O 流操作
+    ├── jdk8learn       -- Java 8 相关特性示例
+    ├── thread          -- 多线程示例
+    └── utils           -- 常用操作工具
+```
+
+## Utils
 * Timer 定时任务调度
 
-# I/O
+## I/O
 * 常用字节流与字符流API的基础使用方式，同时并有简单的拷贝文件例子实现
 * **BIO** 配合多线程的简单实现方式
 * **NIO** 的实现，以多人网络通信聊天为例子实现
 
-# Data Structure
+## Data Structure
+### 数组
+* 二维数组顺（逆）时针螺旋遍历
 ### 集合
 * ArrayList、LinkedList 基础使用
 * HashSet 基础使用
@@ -30,7 +45,7 @@
 ### 树
 * 哈夫曼树构建实例
 
-# Design Patterns
+## Design Patterns
 ### 代理模式（结构）
 * 静态代理：继承方式、聚合方式
 * 动态代理：jdk、cglib
@@ -62,7 +77,7 @@
 * 根据不同访问者（Boss、CFO、CPA）调用不同的账单（Consume、Income）逻辑
 - 通过抽象（AbstractVisitor）继承、接口（Visitor）实现模拟不同层次的访问者，体现该模式跨层次的访问或针对特定层次的逻辑进行定义的优点
 
-# Java8 Lambda / Stream API
+## Java8 Lambda / Stream API
 * 常用函数式接口
 * 方法引用
 * Stream API：filter(筛选)、map(映射)、reduce(归约)

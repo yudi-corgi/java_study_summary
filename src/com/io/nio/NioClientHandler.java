@@ -1,4 +1,4 @@
-package com.learn;
+package com.io.nio;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
