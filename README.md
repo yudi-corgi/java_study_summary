@@ -17,20 +17,13 @@
 └── src/com -- 源码目录
     ├── datastruct      -- 数据结构，如数组、集合、链表
     ├── designpatterns  -- 设计模式
+    ├── encryption      -- 加解密算法
     ├── file            -- 文件操作
     ├── io              -- I/O 流操作
     ├── jdk8learn       -- Java 8 相关特性示例
     ├── thread          -- 多线程示例
     └── utils           -- 常用操作工具
 ```
-
-## Utils
-* Timer 定时任务调度
-
-## I/O
-* 常用字节流与字符流API的基础使用方式，同时并有简单的拷贝文件例子实现
-* **BIO** 配合多线程的简单实现方式
-* **NIO** 的实现，以多人网络通信聊天为例子实现
 
 ## Data Structure
 ### 数组
@@ -77,10 +70,21 @@
 * 根据不同访问者（Boss、CFO、CPA）调用不同的账单（Consume、Income）逻辑
 - 通过抽象（AbstractVisitor）继承、接口（Visitor）实现模拟不同层次的访问者，体现该模式跨层次的访问或针对特定层次的逻辑进行定义的优点
 
+## I/O
+* 常用字节流与字符流API的基础使用方式，同时并有简单的拷贝文件例子实现
+* **BIO** 配合多线程的简单实现方式
+* **NIO** 的实现，以多人网络通信聊天为例子实现
+
 ## Java8 Lambda / Stream API
 * 常用函数式接口
 * 方法引用
 * Stream API：filter(筛选)、map(映射)、reduce(归约)
 * 自定义收集器 Collector、分割迭代器 Spliterator
 
+## Thread
+* 线程创建：实现 Runnable 接口、实现 Callable<T> 接口
+* 线程池简单使用，CountDownLatch 计数器简单使用
+
+## Utils
+* Timer 定时任务调度
 
