@@ -70,6 +70,13 @@
 * 根据不同访问者（Boss、CFO、CPA）调用不同的账单（Consume、Income）逻辑
 - 通过抽象（AbstractVisitor）继承、接口（Visitor）实现模拟不同层次的访问者，体现该模式跨层次的访问或针对特定层次的逻辑进行定义的优点
 
+## Encryption/Decryption Algorithm
+* 实现方式基于 JDK、BouncyCastle(第三方扩展) 、CommosCodec(该扩展只是对 JDK 的封装)
+* Base64 API 使用
+* 消息摘要（MessageDigest）：MD5、SHA-1/SHA-2、Hmac(MAC)
+* 对称加密（SymmetricEncryption）：DES/3DES、AES、PBE
+* 非对称加密（AsymmetricEncryption）：待补充...
+
 ## I/O
 * 常用字节流与字符流API的基础使用方式，同时并有简单的拷贝文件例子实现
 * **BIO** 配合多线程的简单实现方式
