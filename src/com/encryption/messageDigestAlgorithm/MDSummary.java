@@ -34,12 +34,22 @@ public class MDSummary {
         Security.addProvider(new BouncyCastleProvider());
         MessageDigest md4 = MessageDigest.getInstance("MD4");
         MessageDigest md5 = MessageDigest.getInstance("MD5");
-        byte[] md2Bytes = md2.digest(plaintext.getBytes());
+        // 根据给定字节数组更新摘要数据
+        md2.update(plaintext.getBytes());
+        md4.update(plaintext.getBytes());
+        md5.update(plaintext.getBytes());
+        // 传参就是再次更新摘要信息，然后哈希计算再返回字节数组
+        byte[] md2Bytes = md2.digest();
         byte[] md4Bytes = md4.digest(plaintext.getBytes());
         byte[] md5Bytes = md5.digest(plaintext.getBytes());
+        // md5Bytes2 生成的数组转换十六进制字符串后与 md5Bytes 不同，因为摘要信息被重置
+        // digest() 调用后，MessageDigest 会被重置为初始状态
+        // 即 update() 的摘要只能作用于 digest() 方法一次，也可用 reset() 重置
+        byte[] md5Bytes2 = md5.digest(plaintext.getBytes());
         System.out.println("JDK MD2：" + Hex.encodeHexString(md2Bytes));
         System.out.println("JDK MD4：" + Hex.encodeHexString(md4Bytes));
         System.out.println("JDK MD5：" + Hex.encodeHexString(md5Bytes));
+        System.out.println("JDK MD5 2：" + Hex.encodeHexString(md5Bytes2));
     }
 
     // bouncy-castle 实现，需要 bouncy-castle 第三方 jar
@@ -53,17 +63,19 @@ public class MDSummary {
         byte[] md2Bytes = new byte[digest2.getDigestSize()];
         byte[] md4Bytes = new byte[digest4.getDigestSize()];
         byte[] md5Bytes = new byte[digest5.getDigestSize()];
-        // 将摘要信息写入到字节数组
+        // 计算摘要信息
         digest2.doFinal(md2Bytes,0);
         digest4.doFinal(md4Bytes,0);
         digest5.doFinal(md5Bytes,0);
         System.out.println("bouncy-castle MD2：" + org.bouncycastle.util.encoders.Hex.toHexString(md2Bytes));
         System.out.println("bouncy-castle MD4：" + org.bouncycastle.util.encoders.Hex.toHexString(md4Bytes));
         System.out.println("bouncy-castle MD5：" + org.bouncycastle.util.encoders.Hex.toHexString(md5Bytes));
+
     }
 
     // commons-codec 实现，该扩展其实是对 JDK MD 的封装，需要 commons-codec 第三方 jar
     public static void ccMD(){
+        //内部会调用一次 update() 更新摘要信息
         System.out.println("commons-codec MD2：" + DigestUtils.md2Hex(plaintext.getBytes()));
         System.out.println("commons-codec MD5：" + DigestUtils.md5Hex(plaintext.getBytes()));
     }
