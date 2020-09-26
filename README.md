@@ -75,7 +75,6 @@
 * Base64 API 使用
 * 消息摘要（MessageDigest）：MD5、SHA-1/SHA-2、Hmac(MAC)
 * 对称加密（SymmetricEncryption）：DES/3DES、AES、PBE
-* 非对称加密（AsymmetricEncryption）：待补充...
 * **PS1**：示例中加解密都是在同一个方法，实际应用中应当是分开的，由发送方与接受方约定密钥生成方式、加解密算法，密钥也可通过网络传输(安全性低，不推荐)
 * **PS2**：各类加解密算法的实现方式有多种，示例只使用其中之一，其它方式基本只需要替换算法名称，使用逻辑基本相同，如 Hmac 算法下的 HmacMD5、HmacSHA256 等
 
