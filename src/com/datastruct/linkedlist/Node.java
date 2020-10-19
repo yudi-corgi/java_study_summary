@@ -7,14 +7,35 @@ package com.datastruct.linkedlist;
  */
 public class Node {
 
-    String msg;
+    Object data;
     Node next;
+
+    public Node(){}
+
+    public Node(Object data) {
+        this.data = data;
+    }
 
     @Override
     public String toString() {
         return "Node{" +
-                "msg='" + msg + '\'' +
+                "data='" + data + '\'' +
                 ", next=" + next +
                 '}';
+    }
+
+    /**
+     * 通用方法：创建链表
+     * @param array 数据数组
+     * @return  链表
+     */
+    public static Node buildLinkedList(Object[] array){
+        Node head = new Node(array[0]);
+        Node p = head;
+        for (int i = 1; i < array.length; i++) {
+            p.next = new Node(array[i]);
+            p = p.next;
+        }
+        return head;
     }
 }
