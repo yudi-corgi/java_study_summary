@@ -1,6 +1,10 @@
 package com.datastruct.binarytree.trietree;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * @author CDY
@@ -12,7 +16,36 @@ public class TrieTree {
     // 字典树，Map 存储
     public static Map<Object, Object> trieMap ;
 
-    // 匹配深度
+    public static void main(String[] args) {
+        // 初始化字典树
+        TrieTree tt = new TrieTree();
+        Set<String> keywords = new HashSet<>();
+        keywords.add("天才啊");
+        keywords.add("暴力血腥");
+        keywords.add("淫荡");
+        keywords.add("沙雕");
+        keywords.add("屮啊");
+        tt.initTrieTree(keywords);
+        // 打印字典树
+        for (Map.Entry<Object, Object> entry : TrieTree.trieMap.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+        }
+        // 匹配敏感词
+        String content = "你看到昨天那条消息了吗，简直是沙雕啊.";
+        content = tt.filterContent(content, FilterLevel.NOT_FILTERING);
+        System.out.println("是否包含敏感词：" + tt.isContainSensitiveWords(content, MatchType.MAXIMUM));
+        Set<String> sensitiveWords = tt.getSensitiveWords(content, MatchType.MAXIMUM);
+        System.out.println("敏感词数量：" + sensitiveWords.size());
+        for (String getKeyword : sensitiveWords) {
+            System.out.println(getKeyword);
+        }
+        // 前缀联想词
+        String text = "未完成";
+    }
+
+    /**
+     * 匹配类型，最小匹配：匹配就返回；最大匹配：遍历完整段文本获取所有匹配的词汇
+     */
     enum MatchType{
         MINIMUM("最小敏感度"),
         MAXIMUM("最大敏感度");
@@ -22,7 +55,9 @@ public class TrieTree {
         }
     }
 
-    // 文本过滤级别
+    /**
+     * 过滤级别，根据正则表达式过滤文本的特殊符号，如数字、符号、空格等
+     */
     enum FilterLevel {
         NOT_FILTERING("不过滤", null),
         NORMAL("正常", ""),
@@ -57,16 +92,16 @@ public class TrieTree {
             currentMap = trieMap;
             for (int i = 0; i < word.length(); i++) {
                 char c = word.charAt(i);
-                Object o = currentMap.get(c);
-                if (o == null) {
+                Object sub = currentMap.get(c);
+                if (sub == null) {
                     // 不存在时创建新的子节点
                     subMap = new HashMap<>();
                     currentMap.put(c, subMap);
                     // 将当前节点替换成子节点
                     currentMap = subMap;
                 }else{
-                    // 存在时直接将节点赋给当前节点
-                    currentMap = (Map<Object, Object>) o;
+                    // 存在时直接将子节点赋给当前节点
+                    currentMap = (Map<Object, Object>) sub;
                 }
                 // 关键词遍历到末尾时设置结束标识符
                 if(i == word.length() - 1){
@@ -77,21 +112,32 @@ public class TrieTree {
     }
 
     /**
-     * 判断是否包含关键词
+     * 过滤文本
+     * @param content  初始文本
+     * @param level  过滤界别
+     * @return  过滤后的文本
+     */
+    public String filterContent(String content, FilterLevel level){
+        Pattern compile = Pattern.compile(level.regex);
+        return compile.matcher(content).replaceAll("");
+    }
+
+    /**
+     * 判断是否包含敏感词
      * @param content 文本
      * @return true or false
      */
-    public boolean isContainKeyword(String content, MatchType matchType){
-        Set<String> words = getKeywords(content, matchType);
+    public boolean isContainSensitiveWords(String content, MatchType matchType){
+        Set<String> words = getSensitiveWords(content, matchType);
         return !words.isEmpty();
     }
 
     /**
-     * 获取匹配到的关键词（用于敏感词、联想词获取）
+     * 获取关键词（敏感词匹配）
      * @param content 文本
      * @return matched keyword
      */
-    public Set<String> getKeywords(String content, MatchType matchType){
+    public Set<String> getSensitiveWords(String content, MatchType matchType){
         Set<String> keywords = new HashSet<>();
         if("".equals(content.trim()) || content.length() == 0){
             return keywords;
@@ -100,7 +146,7 @@ public class TrieTree {
         content = content.toLowerCase();
         for (int i = 0; i < content.length(); i++) {
             // 获取关键词长度，若有添加到 Set，并增加对应关键词长度后继续遍历 content
-            int length = getKeywordLength(content, i, matchType);
+            int length = getSensitiveWordLength(content, i, matchType);
             if(length > 0){
                 String keyword = content.substring(i, i + length);
                 keywords.add(keyword);
@@ -115,11 +161,11 @@ public class TrieTree {
     }
 
     /**
-     * 获取关键词长度
+     * 获取敏感词长度
      * @param content 文本
      * @return length of keyword
      */
-    public int getKeywordLength(String content, int begin, MatchType matchType){
+    public int getSensitiveWordLength(String content, int begin, MatchType matchType){
         if("".equals(content.trim()) || content.length() == 0){
             return 0;
         }
@@ -145,33 +191,38 @@ public class TrieTree {
         return isEnd ? wordLength : 0;
     }
 
-    public static void main(String[] args) {
-        // 初始化字典树
-        TrieTree tt = new TrieTree();
-        Set<String> keywords = new HashSet<>();
-        keywords.add("天才啊");
-        keywords.add("二货啊");
-        keywords.add("逗逼啊");
-        keywords.add("沙雕啊");
-        keywords.add("屮啊");
-        tt.initTrieTree(keywords);
-
-        // for (Map.Entry<Object, Object> entry : TrieTree.trieMap.entrySet()) {
-        //     System.out.println(entry.getKey()+":"+entry.getValue());
-        // }
-
-        String content = "你看到昨天那条消息天才啊了吗，小编简直是逗逼啊.";
-        System.out.println("是否包含敏感词：" + tt.isContainKeyword(content, MatchType.MAXIMUM));
-        Set<String> getKeywords = tt.getKeywords(content, MatchType.MAXIMUM);
-        System.out.println("敏感词数量：" + getKeywords.size());
-        for (String getKeyword : getKeywords) {
-            System.out.println(getKeyword);
+    /**
+     * 获取联想词，此处只做了前缀全量匹配
+     * TODO 根据字典树每个词搜索次数(热度)排序联想词、前中后匹配
+     * @param content  文本
+     * @return  联想词集合，长度默认 10
+     */
+    public Set<String> getRelationWord(String content){
+        Set<String> keywords = new HashSet<>(10);
+        if("".equals(content.trim()) || content.length() == 0){
+            return keywords;
         }
-        // 过滤文本，去除空格、数字、字母、特殊字符等
-        // String content = "你看到昨天那条消息了吗，小编简直是逗逼啊.";
-        // String regex = "";
-        // Pattern compile = Pattern.compile(regex);
-        // String actualContent = compile.matcher(content).replaceAll("");
+        // 查询联想词
+        boolean match = true;
+        char currentChar;
+        Map<Object, Object> currentMap = trieMap;
+        StringBuilder sb = new StringBuilder(content);
+        // 遍历查询是否有 content 前缀开头的关键词
+        for (int i = 0; i < content.length(); i++) {
+            currentChar = content.charAt(i);
+            if ((currentMap = (Map<Object, Object>) currentMap.get(currentChar)) == null) {
+                match = false;
+                break;
+            }
+        }
+        // 存在则遍历 content 前缀开头的关键词并保存
+        if(match){
+            // content 本身可能也是字典树中的关键词，因此其子节点会包含 isEnd，size > 1 则说明还有其它子节点
+            if (!currentMap.containsKey("isEnd") || (currentMap.containsKey("isEnd") && currentMap.size() > 1)) {
+                // TODO
+            }
+        }
+        return keywords;
     }
 
 }
