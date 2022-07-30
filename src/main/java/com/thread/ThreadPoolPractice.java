@@ -1,6 +1,5 @@
 package com.thread;
 
-import com.sun.jmx.snmp.tasks.ThreadService;
 
 import java.util.concurrent.*;
 
