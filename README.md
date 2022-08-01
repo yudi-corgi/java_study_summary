@@ -94,6 +94,7 @@
 ## Thread
 * 线程创建：实现 Runnable 接口、实现 Callable<T> 接口
 * 线程池简单使用，CountDownLatch 计数器简单使用
+* 基于 LockSupport 实现 FIFO 锁（公平锁）
 
 ## Utils
 * Timer 定时任务调度
