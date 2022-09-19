@@ -1,6 +1,5 @@
 package com.datastruct.binarytree.huffmantree;
 
-import javax.swing.tree.TreeNode;
 import java.util.*;
 
 /**
