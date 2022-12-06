@@ -11,8 +11,8 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <lombok.version>1.18.22</lombok.version>
-        <jmh.version>1.33</jmh.version>
+        <lombok.version>1.18.24</lombok.version>
+        <jmh.version>1.36</jmh.version>
     </properties>
 
     <dependencies>
