@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public class TrieTree {
 
     // 字典树，Map 存储
-    public static Map<Object, Object> trieMap ;
+    public static Map<String, TrieTreeNode> trieMap ;
 
     public static void main(String[] args) {
         // 初始化字典树
@@ -25,9 +25,10 @@ public class TrieTree {
         keywords.add("淫荡");
         keywords.add("沙雕");
         keywords.add("屮啊");
+        keywords.add("草");
         tt.initTrieTree(keywords);
         // 打印字典树
-        for (Map.Entry<Object, Object> entry : TrieTree.trieMap.entrySet()) {
+        for (Map.Entry<String, TrieTreeNode> entry : TrieTree.trieMap.entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
         // 匹配敏感词
@@ -79,9 +80,9 @@ public class TrieTree {
         trieMap = new HashMap<>(keyWords.size());
         String word;
         // 表示当前节点
-        Map<Object, Object> currentMap ;
+        Map<String, TrieTreeNode> currentMap ;
         // 表示当前节点的子节点
-        Map<Object, Object> subMap;
+        TrieTreeNode childNode;
         for (String keyWord : keyWords) {
             // 关键词长度 >= 2
             if("".equals(keyWord.trim()) || keyWord.length() <= 1){
@@ -91,18 +92,14 @@ public class TrieTree {
             // 每次循环重置 currentMap
             currentMap = trieMap;
             for (int i = 0; i < word.length(); i++) {
-                char c = word.charAt(i);
-                Object sub = currentMap.get(c);
-                if (sub == null) {
-                    // 不存在时创建新的子节点
-                    subMap = new HashMap<>();
-                    currentMap.put(c, subMap);
-                    // 将当前节点替换成子节点
-                    currentMap = subMap;
-                }else{
-                    // 存在时直接将子节点赋给当前节点
-                    currentMap = (Map<Object, Object>) sub;
+                String c = String.valueOf(word.charAt(i));
+                if ((childNode = currentMap.get(c)) == null) {
+                    childNode = new TrieTreeNode();
+                    childNode.setWord(c);
+                    childNode.setChildWords(new HashMap<>());
+                    currentMap.put(c, childNode);
                 }
+                currentMap = childNode.getChildWords();
                 // 关键词遍历到末尾时设置结束标识符
                 if(i == word.length() - 1){
                     currentMap.put("isEnd",null);
@@ -170,16 +167,18 @@ public class TrieTree {
             return 0;
         }
         // 计算长度
-        char currentChar;
+        String currentWord;
+        TrieTreeNode childNode;
         int wordLength = 0;
         boolean isEnd = false;
-        Map<Object,Object> currentMap = trieMap;
+        Map<String, TrieTreeNode> currentMap = trieMap;
         for (int i = begin; i < content.length(); i++) {
-            currentChar = content.charAt(i);
-            if ((currentMap = (Map<Object, Object>) currentMap.get(currentChar)) == null) {
+            currentWord = String.valueOf(content.charAt(i));
+            if ((childNode = currentMap.get(currentWord)) == null) {
                 break;
             }
             wordLength++;
+            currentMap = childNode.getChildWords();
             if(currentMap.containsKey("isEnd")){
                 isEnd = true;
                 // 判断匹配类型
@@ -204,13 +203,14 @@ public class TrieTree {
         }
         // 查询联想词
         boolean match = true;
-        char currentChar;
-        Map<Object, Object> currentMap = trieMap;
+        String currentWord;
+        TrieTreeNode childNode;
+        Map<String, TrieTreeNode> currentMap = trieMap;
         StringBuilder sb = new StringBuilder(content);
         // 遍历查询是否有 content 前缀开头的关键词
         for (int i = 0; i < content.length(); i++) {
-            currentChar = content.charAt(i);
-            if ((currentMap = (Map<Object, Object>) currentMap.get(currentChar)) == null) {
+            currentWord = String.valueOf(content.charAt(i));
+            if ((childNode = currentMap.get(currentWord)) == null) {
                 match = false;
                 break;
             }
