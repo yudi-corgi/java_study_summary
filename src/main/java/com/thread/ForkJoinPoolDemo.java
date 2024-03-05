@@ -1,4 +1,4 @@
-package com.thread.forkjoinpool;
+package com.thread;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinWorkerThread;
