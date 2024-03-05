@@ -101,6 +101,7 @@
 * 线程池简单使用，CountDownLatch 计数器简单使用
 * 基于 LockSupport 实现 FIFO 锁（公平锁）
 * ForkJoinPool 使用示例
+* 线程执行任务顺序控制：Wait/Notify、ReentrantLock+Condition、LockSupport 实现
 
 ## Utils
 * Timer 定时任务调度
