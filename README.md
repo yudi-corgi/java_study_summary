@@ -102,6 +102,7 @@
 * 基于 LockSupport 实现 FIFO 锁（公平锁）
 * ForkJoinPool 使用示例
 * 线程执行任务顺序控制：Wait/Notify、ReentrantLock+Condition、LockSupport 实现
+* 虚拟线程 TODO
 
 ## Utils
 * Timer 定时任务调度
